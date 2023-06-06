@@ -1,0 +1,21 @@
+<div class="relative">
+    <!--  BEGIN SIDEBAR  -->
+    <layout-sidebar />
+    <!--  END SIDEBAR  -->
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div class="main-content md:pl-[260px]">
+        <!--  BEGIN TOP NAVBAR  -->
+        <layout-header />
+        <!--  END TOP NAVBAR  -->
+
+        <div class="p-8">
+            <router-outlet></router-outlet>
+
+            <!-- BEGIN FOOTER -->
+            <layout-footer />
+            <!-- END FOOTER -->
+        </div>
+    </div>
+    <!--  END CONTENT AREA  -->
+</div>

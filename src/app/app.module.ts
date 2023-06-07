@@ -11,6 +11,13 @@ import { SidebarComponent } from './layout/sidebar';
 // ng-datatable
 import { DataTableModule } from '@bhplugin/ng-datatable';
 
+// store
+import { StoreModule } from '@ngrx/store';
+import { indexReducer } from './store/index.reducer';
+
+// highlightjs
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+
 import { BasicComponent } from './basic';
 import { IndexComponent } from './index';
 import { AltPaginationComponent } from './alt-pagination';
@@ -67,8 +74,21 @@ export const routes: Routes = [
         HeaderCloneComponent,
         ColumnChooserComponent,
     ],
-    imports: [RouterModule.forRoot(routes), BrowserModule, FormsModule, ReactiveFormsModule, DataTableModule],
-    providers: [],
+    imports: [RouterModule.forRoot(routes), BrowserModule, FormsModule, ReactiveFormsModule, DataTableModule, StoreModule.forRoot({ index: indexReducer }), HighlightModule],
+    providers: [
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+                coreLibraryLoader: () => import('highlight.js/lib/core'),
+                languages: {
+                    json: () => import('highlight.js/lib/languages/json'),
+                    typescript: () => import('highlight.js/lib/languages/typescript'),
+                    css: () => import('highlight.js/lib/languages/css'),
+                    xml: () => import('highlight.js/lib/languages/xml'),
+                },
+            },
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

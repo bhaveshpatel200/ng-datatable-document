@@ -104,3 +104,8 @@
 .bh-table-responsive table thead tr th {
     @apply !font-medium;
 }
+
+/* highlightjs */
+pre code.hljs {
+    @apply overflow-x-auto rounded-md !bg-[#191e3a] p-4 text-white;
+}

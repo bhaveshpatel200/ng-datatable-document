@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'layout-sidebar',
     template: `
-        <!-- [ngClass]="{ 'left-0': store.sidebar, '!left-0': !store.sidebar }" -->
-        <div class="sidebar bg-white shadow z-20 fixed top-0 h-screen overflow-y-auto -left-[260px] md:left-0 whitespace-normal w-[260px] transition-all duration-300">
+        <div class="sidebar bg-white shadow z-20 fixed top-0 h-screen overflow-y-auto -left-[260px] md:left-0 whitespace-normal w-[260px] transition-all duration-300" [ngClass]="{'!left-0': store.sidebar }">
             <div class="w-full px-3">
                 <div class="flex items-center justify-between flex-wrap sticky top-0 bg-white z-10">
                     <a routerLink="/" class="flex items-center text-black py-4 w-full">
@@ -112,4 +112,17 @@ import { Component } from '@angular/core';
         </div>
     `,
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+    store: any;
+
+    constructor(public storeData: Store<any>) {
+        this.initStore();
+    }
+    async initStore() {
+        this.storeData
+            .select((d) => d.index)
+            .subscribe((d) => {
+                this.store = d;
+            });
+    }
+}

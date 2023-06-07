@@ -478,22 +478,28 @@ import { Component } from '@angular/core';
 
             <div id="slots">
                 <h2 class="text-3xl py-3 border-b border-black/20 mb-4">Slots</h2>
-                <!-- <Highlight>
-                    <pre>
-&lt;template #id=&quot;data&quot;&gt;
-  &lt;strong&gt;&#123;&#123; data.value.id &#125;&#125;&lt;/strong&gt;
-&lt;/template&gt;
+                <pre>
+                    <code [languages]="['xml','css','typescript']" highlight="&lt;!-- primary --&gt;
+&lt;span class=&quot;badge bg-primary&quot;&gt;Primary&lt;/span&gt;
 
-&lt;template #name=&quot;data&quot;&gt;
-  &lt;strong&gt;&#123;&#123; data.value.name &#125;&#125;&lt;/strong&gt;
-&lt;/template&gt;
+&lt;!-- secondary --&gt;
+&lt;span class=&quot;badge bg-secondary&quot;&gt;Secondary&lt;/span&gt;
 
-&lt;template #email=&quot;data&quot;&gt;
-  &lt;strong&gt;&#123;&#123; data.value.email &#125;&#125;&lt;/strong&gt;
-&lt;/template&gt;
-</pre
-                    >
-                </Highlight> -->
+&lt;!-- success --&gt;
+&lt;span class=&quot;badge bg-success&quot;&gt;Success&lt;/span&gt;
+
+&lt;!-- danger --&gt;
+&lt;span class=&quot;badge bg-danger&quot;&gt;Danger&lt;/span&gt;
+
+&lt;!-- warning --&gt;
+&lt;span class=&quot;badge bg-warning&quot;&gt;Warning&lt;/span&gt;
+
+&lt;!-- info --&gt;
+&lt;span class=&quot;badge bg-info&quot;&gt;Info&lt;/span&gt;
+
+&lt;!-- dark --&gt;
+&lt;span class=&quot;badge bg-dark&quot;&gt;Dark&lt;/span&gt;"></code>
+                </pre>
             </div>
 
             <div id="usage">

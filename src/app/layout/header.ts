@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'layout-header',
@@ -12,8 +13,7 @@ import { Component } from '@angular/core';
                         </svg>
                     </button>
 
-                    <!-- (click)="store.toggleSidebar()" -->
-                    <button type="button" class="py-2 px-2 text-gray-500 bg-gray-200 rounded-full ml-auto md:hidden block">
+                    <button type="button" class="py-2 px-2 text-gray-500 bg-gray-200 rounded-full ml-auto md:hidden block" (click)="storeData.dispatch({ type: 'toggleSidebar' })">
                         <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -25,4 +25,17 @@ import { Component } from '@angular/core';
         </div>
     `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+    store: any;
+
+    constructor(public storeData: Store<any>) {
+        this.initStore();
+    }
+    async initStore() {
+        this.storeData
+            .select((d) => d.index)
+            .subscribe((d) => {
+                this.store = d;
+            });
+    }
+}

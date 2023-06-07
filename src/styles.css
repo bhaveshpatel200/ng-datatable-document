@@ -70,4 +70,37 @@
     .badge.info {
         @apply bg-info/50;
     }
+
+    /* props tables */
+    .props-table.table-responsive {
+        @apply overflow-auto rounded-lg border border-collapse border-[#e5e7eb];
+    }
+    .props-table table {
+        @apply w-full border-collapse divide-y divide-[#e5e7eb];
+    }
+    .props-table table thead th,
+    .props-table table tbody td {
+        @apply text-left py-2.5 px-4;
+    }
+    .props-table table th {
+        @apply font-semibold;
+    }
+    .props-table table tbody tr,
+    .props-table table thead tr {
+        @apply divide-x divide-[#e5e7eb];
+    }
+    .props-table table tbody {
+        @apply divide-y divide-[#e5e7eb];
+    }
+    .props-table table.bh-table-striped tr {
+        @apply even:bg-[#f4f4f4];
+    }
+}
+/* datatable */
+.bh-table {
+    @apply !font-light;
+}
+.bh-table-responsive table tfoot tr th,
+.bh-table-responsive table thead tr th {
+    @apply !font-medium;
 }

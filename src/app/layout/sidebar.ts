@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'layout-sidebar',
     template: `
         <!-- [ngClass]="{ 'left-0': store.sidebar, '!left-0': !store.sidebar }" -->
-        <div class="sidebar bg-white shadow z-20 fixed top-0 h-screen overflow-y-auto">
+        <div class="sidebar bg-white shadow z-20 fixed top-0 h-screen overflow-y-auto -left-[260px] md:left-0 whitespace-normal w-[260px] transition-all duration-300">
             <div class="w-full px-3">
                 <div class="flex items-center justify-between flex-wrap sticky top-0 bg-white z-10">
                     <a routerLink="/" class="flex items-center text-black py-4 w-full">
@@ -27,31 +27,31 @@ import { Component } from '@angular/core';
 
                     <ul class="mt-3 pl-5">
                         <li class="sub-item">
-                            <a routerLink="/#install">
-                                <span class="mr-2 text-2xl leading-5">•</span>
+                            <a href="/#install" class="group">
+                                <span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span>
                                 Installation
                             </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#props"><span class="mr-2 text-2xl leading-5">•</span> Props </a>
+                            <a href="/#props" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Props </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#events"><span class="mr-2 text-2xl leading-5">•</span> Events </a>
+                            <a href="/#events" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Events </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#methods"><span class="mr-2 text-2xl leading-5">•</span> Methods </a>
+                            <a href="/#methods" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Methods </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#slots"><span class="mr-2 text-2xl leading-5">•</span> Slots </a>
+                            <a href="/#slots" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Slots </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#usage"><span class="mr-2 text-2xl leading-5">•</span> Usage </a>
+                            <a href="/#usage" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Usage </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#license"><span class="mr-2 text-2xl leading-5">•</span> License </a>
+                            <a href="/#license" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> License </a>
                         </li>
                         <li class="sub-item">
-                            <a routerLink="/#support"><span class="mr-2 text-2xl leading-5">•</span> Support </a>
+                            <a href="/#support" class="group"><span class="mr-2 text-2xl leading-5 text-black/60 group-hover:text-primary">•</span> Support </a>
                         </li>
                     </ul>
 

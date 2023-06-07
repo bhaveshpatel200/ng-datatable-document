@@ -12,6 +12,7 @@ import { SidebarComponent } from './layout/sidebar';
 import { DataTableModule } from '@bhplugin/ng-datatable';
 
 import { BasicComponent } from './basic';
+import { IndexComponent } from './index';
 import { AltPaginationComponent } from './alt-pagination';
 import { CustomPageSizeComponent } from './custom-page-size';
 import { SearchComponent } from './search';
@@ -27,7 +28,8 @@ import { HeaderCloneComponent } from './header-clone';
 import { ColumnChooserComponent } from './columnchooser';
 
 export const routes: Routes = [
-    { path: '', component: BasicComponent },
+    { path: '', component: IndexComponent },
+    { path: 'basic', component: BasicComponent },
     { path: 'alt-pagination', component: AltPaginationComponent },
     { path: 'custom-page-size', component: CustomPageSizeComponent },
     { path: 'search', component: SearchComponent },
@@ -49,6 +51,7 @@ export const routes: Routes = [
         HeaderComponent,
         FooterComponent,
         SidebarComponent,
+        IndexComponent,
         BasicComponent,
         AltPaginationComponent,
         CustomPageSizeComponent,

@@ -14,7 +14,7 @@ import { colDef } from '@bhplugin/ng-datatable';
 
             <ng-datatable [rows]="rows" [columns]="cols" skin="bh-table-striped"> </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Skin - Hover</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/skin.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -24,7 +24,7 @@ import { colDef } from '@bhplugin/ng-datatable';
 
             <ng-datatable [rows]="rows" [columns]="cols" skin="bh-table-hover"> </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Skin - Bordered</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/skin.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -34,7 +34,7 @@ import { colDef } from '@bhplugin/ng-datatable';
 
             <ng-datatable [rows]="rows" [columns]="cols" skin="bh-table-bordered"> </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Skin - Compact</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/skin.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -44,7 +44,7 @@ import { colDef } from '@bhplugin/ng-datatable';
 
             <ng-datatable [rows]="rows" [columns]="cols" skin="bh-table-compact"> </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Skin - All</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/skin.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />

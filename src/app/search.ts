@@ -19,7 +19,7 @@ import { colDef } from '@bhplugin/ng-datatable';
             <ng-datatable [rows]="rows" [columns]="cols" [search]="search"> </ng-datatable>
 
             <!-- specific column search -->
-            <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Specific Column Search</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/search.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />

@@ -16,7 +16,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <input
                     [(ngModel)]="search"
                     type="text"
-                    class="w-full max-w-sm bh-border bh-border-solid bh-bg-white bh-p-2 bh-outline-0 bh-border-gray-200 focus:bh-border-gray-200 bh-rounded"
+                    class="w-full max-w-sm bh-border bh-border-solid bh-bg-white bh-p-2 bh-outline-0 bh-border-gray focus:bh-border-gray bh-rounded"
                     placeholder="Search..."
                 />
             </div>

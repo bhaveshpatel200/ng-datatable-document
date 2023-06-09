@@ -16,7 +16,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <ng-datatable [rows]="rows" [columns]="cols1" firstArrow="First" lastArrow="Last" previousArrow="Prev" nextArrow="Next" [showNumbersCount]="3"> </ng-datatable>
             </div>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Disable First Last Pagination</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/alt-pagination.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -28,7 +28,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <ng-datatable [rows]="rows" [columns]="cols2" [showFirstPage]="false" [showLastPage]="false"> </ng-datatable>
             </div>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Pagination Without number</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/alt-pagination.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -40,7 +40,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <ng-datatable [rows]="rows" [columns]="cols3" [showNumbers]="false"> </ng-datatable>
             </div>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Next Previous</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/alt-pagination.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />

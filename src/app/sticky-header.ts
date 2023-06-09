@@ -18,7 +18,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </ng-template>
             </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Sticky First Column</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/sticky-header.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
@@ -35,7 +35,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </ng-template>
             </ng-datatable>
 
-            <div class="flex items-center justify-between mb-5 border-t border-gray-200 mt-10 pt-10">
+            <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
                 <h2 class="text-3xl">Sticky Header & First Column</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/sticky-header.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />

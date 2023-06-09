@@ -13,13 +13,18 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div class="advanced-table whitespace-nowrap">
-                <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true" [loading]="true">
+                <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true" [loading]="loading">
                     <ng-template slot="id" let-value="data">
                         <strong class="text-info">#{{ value.id }}</strong>
                     </ng-template>
                     <ng-template slot="firstName" let-value="data">
                         <div class="flex items-center gap-2">
-                            <img *ngIf="value.profileId" [src]="'/assets/images/profile/profile-' + value.profileId + '.jpeg'" class="h-9 w-9 max-w-none rounded-full" alt="user-profile" />
+                            <img
+                                *ngIf="value.profileId"
+                                [src]="'/assets/images/profile/profile-' + value.profileId + '.jpeg'"
+                                class="h-9 w-9 max-w-none rounded-full"
+                                alt="user-profile"
+                            />
                             <div class="font-medium">{{ value.firstName + ' ' + value.lastName }}</div>
                         </div>
                     </ng-template>
@@ -34,7 +39,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                     </ng-template>
                     <ng-template slot="age" let-value="data">
                         <div class="flex h-2.5 w-4/5 min-w-[100px] rounded-full bg-[#ebedf2] dark:bg-dark/40">
-                            <div class="h-2.5 rounded-full rounded-bl-full text-center text-xs text-white" [ngStyle]="{ width: value.age + '%', background:  value.color}"></div>
+                            <div class="h-2.5 rounded-full rounded-bl-full text-center text-xs text-white" [ngStyle]="{ width: value.age + '%', background: value.color }"></div>
                         </div>
                     </ng-template>
                     <ng-template slot="rating" let-value="data">
@@ -93,10 +98,12 @@ export class AdvancedComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
     countryList: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'User' },
@@ -130,6 +137,8 @@ export class AdvancedComponent {
                 countryCode: this.getCountry().code,
             };
         });
+
+        this.loading = false;
     }
 
     chartOptions: any;

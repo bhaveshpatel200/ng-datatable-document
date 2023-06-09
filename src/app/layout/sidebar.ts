@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 
                 <ul class="relative space-y-0.5 text-gray-500 pb-5">
                     <li class="menu nav-item">
-                        <a routerLink="/" class="nav-link">
+                        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
                             <div class="flex items-center">
                                 <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -58,53 +58,53 @@ import { Store } from '@ngrx/store';
                     <li class="px-3 pt-5 pb-3 text-sm font-medium leading-none uppercase text-black">Examples</li>
 
                     <li class="menu nav-item">
-                        <a routerLink="/advanced" class="nav-link"> Advanced </a>
+                        <a routerLink="/advanced" routerLinkActive="active" class="nav-link"> Advanced </a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/basic" class="nav-link"> Basic </a>
+                        <a routerLink="/basic" routerLinkActive="active" class="nav-link"> Basic </a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/sorting" class="nav-link">Sorting</a>
+                        <a routerLink="/sorting" routerLinkActive="active" class="nav-link">Sorting</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/alt-pagination" class="nav-link">Alt Pagination</a>
+                        <a routerLink="/alt-pagination" routerLinkActive="active" class="nav-link">Alt Pagination</a>
                     </li>
 
                     <li class="menu nav-item">
-                        <a routerLink="/custom-page-size" class="nav-link"> Custom Page Size & Info </a>
+                        <a routerLink="/custom-page-size" routerLinkActive="active" class="nav-link"> Custom Page Size & Info </a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/search" class="nav-link">Global Search</a>
+                        <a routerLink="/search" routerLinkActive="active" class="nav-link">Global Search</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/checkbox" class="nav-link">Checkbox</a>
+                        <a routerLink="/checkbox" routerLinkActive="active" class="nav-link">Checkbox</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/slot" class="nav-link">Slot</a>
+                        <a routerLink="/slot" routerLinkActive="active" class="nav-link">Slot</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/custom-message" class="nav-link">Custom Text</a>
+                        <a routerLink="/custom-message" routerLinkActive="active" class="nav-link">Custom Text</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/column-filter" class="nav-link">Column Filter</a>
+                        <a routerLink="/column-filter" routerLinkActive="active" class="nav-link">Column Filter</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/skin" class="nav-link">Skin</a>
+                        <a routerLink="/skin" routerLinkActive="active" class="nav-link">Skin</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/actions" class="nav-link">Actions</a>
+                        <a routerLink="/actions" routerLinkActive="active" class="nav-link">Actions</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/rowclick" class="nav-link">Row Click</a>
+                        <a routerLink="/rowclick" routerLinkActive="active" class="nav-link">Row Click</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/sticky-header" class="nav-link">Sticky Header</a>
+                        <a routerLink="/sticky-header" routerLinkActive="active" class="nav-link">Sticky Header</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/header-clone" class="nav-link">Clone Header</a>
+                        <a routerLink="/header-clone" routerLinkActive="active" class="nav-link">Clone Header</a>
                     </li>
                     <li class="menu nav-item">
-                        <a routerLink="/columnchooser" class="nav-link">Column Chooser</a>
+                        <a routerLink="/columnchooser" routerLinkActive="active" class="nav-link">Column Chooser</a>
                     </li>
                     <li class="menu nav-item pt-4">Coming Soon (More Samples)</li>
                 </ul>

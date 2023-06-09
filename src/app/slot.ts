@@ -6,6 +6,10 @@ import { colDef } from '@bhplugin/ng-datatable';
         <div>
             <div class="flex items-center justify-between mb-5">
                 <h2 class="text-3xl">Slot</h2>
+                <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/slot.ts" class="btn">
+                    <icon-github class="w-5 h-5 mr-2" />
+                    View Source
+                </a>
             </div>
 
             <ng-datatable [rows]="rows" [columns]="cols">
@@ -13,7 +17,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                     <strong>#{{ value.id }}</strong>
                 </ng-template>
                 <ng-template slot="email" let-value="data">
-                    <a [href]="'mailto:' + value.email" class="text-blue-700 hover:underline font-semibold">{{ value.email }}</a>
+                    <a [href]="'mailto:' + value.email" class="text-primary hover:underline">{{ value.email }}</a>
                 </ng-template>
             </ng-datatable>
         </div>
@@ -25,53 +29,19 @@ export class SlotComponent {
     constructor() {
         this.initData();
     }
-    initData() {
+    async initData() {
         this.cols = [
-            {
-                field: 'id',
-                title: 'ID',
-                isUnique: true,
-            },
-            { field: 'name', title: 'Name' },
-            { field: 'username', title: 'Username' },
+            { field: 'id', title: 'ID', isUnique: true },
+            { field: 'firstName', title: 'First Name' },
+            { field: 'lastName', title: 'Last Name' },
             { field: 'email', title: 'Email' },
             { field: 'phone', title: 'Phone' },
-            { field: 'date', title: 'Date', type: 'date' },
-            { field: 'active', title: 'Active', type: 'bool' },
-            { field: 'age', title: 'Age', type: 'number' },
-            { field: 'company.name', title: 'Company' },
         ];
 
-        const arr = [];
-        for (let i = 0; i < 50; i++) {
-            const obj = {
-                id: i + 1,
-                name: 'Leanne Graham - ' + i,
-                username: 'Bret - ' + i,
-                email: 'Sincere@april.biz' + i,
-                address: {
-                    street: 'Kulas Light - ' + i,
-                    suite: 'Apt. 556 - ' + i,
-                    city: 'Gwenborough - ' + i,
-                    zipcode: '92998-3874 - ' + i,
-                    geo: {
-                        lat: '-37.3159 - ' + i,
-                        lng: '81.1496 - ' + i,
-                    },
-                },
-                phone: '1-770-736-8031 x56442 - ' + i,
-                website: 'hildegard.org - ' + i,
-                company: {
-                    name: 'Romaguera-Crona - ' + i,
-                    catchPhrase: 'Multi-layered client-server neural-net - ' + i,
-                    bs: 'harness real-time e-markets - ' + i,
-                },
-                date: 'Tue Sep 27 2022 22:19:57',
-                active: i % 2 === 0 ? true : false,
-                age: i % 2 === 0 ? i + 2 : i + 1,
-            };
-            arr.push(obj);
-        }
-        this.rows = arr;
+        try {
+            const url = '../assets/data.json';
+            const response = await fetch(url);
+            this.rows = await response.json();
+        } catch (error) {}
     }
 }

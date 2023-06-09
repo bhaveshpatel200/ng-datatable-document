@@ -6,14 +6,14 @@ import { colDef } from '@bhplugin/ng-datatable';
         <div>
             <div class="flex items-center justify-between mb-5">
                 <h2 class="text-3xl">Column Chooser</h2>
+                <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/columnchooser.ts" class="btn">
+                    <icon-github class="w-5 h-5 mr-2" />
+                    View Source
+                </a>
             </div>
 
             <div class="mb-5 relative">
-                <button
-                    type="button"
-                    class="inline-flex items-center border bg-blue-500 border-blue-500 rounded px-4 py-1 text-white hover:bg-white hover:text-blue-500 transition duration-300 gap-2"
-                    (click)="isOpen = !isOpen"
-                >
+                <button type="button" class="btn gap-2" (click)="isOpen = !isOpen">
                     Column Chooser
                     <svg
                         viewBox="0 0 24 24"
@@ -47,54 +47,29 @@ import { colDef } from '@bhplugin/ng-datatable';
 export class ColumnChooserComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
-    isOpen = false;
+    isOpen: boolean = false;
     constructor() {
         this.initData();
     }
-    initData() {
+    async initData() {
         this.cols = [
-            { field: 'id', title: 'ID', isUnique: true },
-            { field: 'name', title: 'Name' },
-            { field: 'username', title: 'Username' },
-            { field: 'email', title: 'Email' },
-            { field: 'phone', title: 'Phone' },
-            { field: 'date', title: 'Date', type: 'date' },
-            { field: 'active', title: 'Active', type: 'bool' },
-            { field: 'age', title: 'Age', type: 'number' },
-            { field: 'company.name', title: 'Company' },
+            { field: 'id', title: 'ID', isUnique: true, hide: false },
+            { field: 'firstName', title: 'First Name', hide: false },
+            { field: 'lastName', title: 'Last Name', hide: false },
+            { field: 'email', title: 'Email', hide: false },
+            { field: 'phone', title: 'Phone', hide: false },
+            { field: 'company', title: 'Company', hide: false },
+            { field: 'address.street', title: 'Address', hide: false },
+            { field: 'age', title: 'Age', type: 'number', hide: true },
+            { field: 'dob', title: 'Birthdate', type: 'date', hide: true },
+            { field: 'isActive', title: 'Active', type: 'bool', hide: true },
         ];
 
-        const arr = [];
-        for (let i = 0; i < 50; i++) {
-            const obj = {
-                id: i + 1,
-                name: 'Leanne Graham - ' + i,
-                username: 'Bret - ' + i,
-                email: 'Sincere@april.biz' + i,
-                address: {
-                    street: 'Kulas Light - ' + i,
-                    suite: 'Apt. 556 - ' + i,
-                    city: 'Gwenborough - ' + i,
-                    zipcode: '92998-3874 - ' + i,
-                    geo: {
-                        lat: '-37.3159 - ' + i,
-                        lng: '81.1496 - ' + i,
-                    },
-                },
-                phone: '1-770-736-8031 x56442 - ' + i,
-                website: 'hildegard.org - ' + i,
-                company: {
-                    name: 'Romaguera-Crona - ' + i,
-                    catchPhrase: 'Multi-layered client-server neural-net - ' + i,
-                    bs: 'harness real-time e-markets - ' + i,
-                },
-                date: 'Tue Sep 27 2022 22:19:57',
-                active: i % 2 === 0 ? true : false,
-                age: i % 2 === 0 ? i + 2 : i + 1,
-            };
-            arr.push(obj);
-        }
-        this.rows = arr;
+        try {
+            const url = '../assets/data.json';
+            const response = await fetch(url);
+            this.rows = await response.json();
+        } catch (error) {}
     }
 
     updateColumn(col: colDef) {

@@ -15,6 +15,9 @@ import { DataTableModule } from '@bhplugin/ng-datatable';
 import { StoreModule } from '@ngrx/store';
 import { indexReducer } from './store/index.reducer';
 
+// apexchart
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 import { BasicComponent } from './basic';
 import { IndexComponent } from './index';
 import { AltPaginationComponent } from './alt-pagination';
@@ -30,6 +33,10 @@ import { RowClickComponent } from './rowclick';
 import { StickyHeaderComponent } from './sticky-header';
 import { HeaderCloneComponent } from './header-clone';
 import { ColumnChooserComponent } from './columnchooser';
+import { IconGithubComponent } from './components/icon/icon-github';
+import { IconCodeComponent } from './components/icon/icon-code';
+import { SortingComponent } from './sorting';
+import { AdvancedComponent } from './advanced';
 
 // highlight js
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
@@ -50,6 +57,8 @@ export const routes: Routes = [
     { path: 'sticky-header', component: StickyHeaderComponent },
     { path: 'header-clone', component: HeaderCloneComponent },
     { path: 'columnchooser', component: ColumnChooserComponent },
+    { path: 'sorting', component: SortingComponent },
+    { path: 'advanced', component: AdvancedComponent },
 ];
 
 @NgModule({
@@ -73,8 +82,21 @@ export const routes: Routes = [
         StickyHeaderComponent,
         HeaderCloneComponent,
         ColumnChooserComponent,
+        IconGithubComponent,
+        IconCodeComponent,
+        SortingComponent,
+        AdvancedComponent,
     ],
-    imports: [RouterModule.forRoot(routes), BrowserModule, FormsModule, ReactiveFormsModule, DataTableModule, StoreModule.forRoot({ index: indexReducer }), HighlightModule],
+    imports: [
+        RouterModule.forRoot(routes),
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DataTableModule,
+        StoreModule.forRoot({ index: indexReducer }),
+        HighlightModule,
+        NgApexchartsModule,
+    ],
     providers: [
         {
             provide: HIGHLIGHT_OPTIONS,

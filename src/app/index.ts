@@ -479,11 +479,12 @@ import { Component } from '@angular/core';
             <div id="slots">
                 <h2 class="text-3xl py-3 border-b border-black/10 mb-4">Slots</h2>
                 <div class="mb-6">
-                    <highlight>
+                    <!-- <highlight>
                         <pre>
 <code>{{ slot_code }}</code>
 </pre>
-                    </highlight>
+                    </highlight> -->
+                    <pre><code [highlight]="slot_code"></code></pre>
                 </div>
             </div>
 
@@ -491,29 +492,17 @@ import { Component } from '@angular/core';
                 <h2 class="text-3xl py-3 border-b border-black/10 mb-4">Usage</h2>
                 <div class="mb-6">
                     <h3 class="text-primary text-lg font-normal underline mb-2">app.module.ts</h3>
-                    <highlight>
-                        <pre>
-<code>{{ usage_code1 }}</code>
-</pre>
-                    </highlight>
+                    <pre><code [highlight]="usage_code1"></code></pre>
                 </div>
 
                 <div class="mb-6">
                     <h3 class="text-primary text-lg font-normal underline mb-2">app.component.html</h3>
-                    <highlight>
-                        <pre>
-<code>{{ usage_code2 }}</code>
-</pre>
-                    </highlight>
+                    <pre><code [highlight]="usage_code2"></code></pre>
                 </div>
 
                 <div class="mb-6">
                     <h3 class="text-primary text-lg font-normal underline mb-2">app.component.ts</h3>
-                    <highlight>
-                        <pre>
-<code>{{ usage_code3 }}</code>
-</pre>
-                    </highlight>
+                    <pre><code [highlight]="usage_code3"></code></pre>
                 </div>
             </div>
 

@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header';
 import { FooterComponent } from './layout/footer';
 import { SidebarComponent } from './layout/sidebar';
-import { HighlightComponent } from './highlight';
 
 // ng-datatable
 import { DataTableModule } from '@bhplugin/ng-datatable';
@@ -31,6 +30,9 @@ import { RowClickComponent } from './rowclick';
 import { StickyHeaderComponent } from './sticky-header';
 import { HeaderCloneComponent } from './header-clone';
 import { ColumnChooserComponent } from './columnchooser';
+
+// highlight js
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -56,7 +58,6 @@ export const routes: Routes = [
         HeaderComponent,
         FooterComponent,
         SidebarComponent,
-        HighlightComponent,
         IndexComponent,
         BasicComponent,
         AltPaginationComponent,
@@ -73,8 +74,18 @@ export const routes: Routes = [
         HeaderCloneComponent,
         ColumnChooserComponent,
     ],
-    imports: [RouterModule.forRoot(routes), BrowserModule, FormsModule, ReactiveFormsModule, DataTableModule, StoreModule.forRoot({ index: indexReducer })],
-    providers: [],
+    imports: [RouterModule.forRoot(routes), BrowserModule, FormsModule, ReactiveFormsModule, DataTableModule, StoreModule.forRoot({ index: indexReducer }), HighlightModule],
+    providers: [
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+                coreLibraryLoader: () => import('highlight.js/lib/core'),
+                languages: {
+                    typescript: () => import('highlight.js/lib/languages/typescript'),
+                },
+            },
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

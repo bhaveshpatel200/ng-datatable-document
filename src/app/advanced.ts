@@ -20,7 +20,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                     <ng-template slot="firstName" let-value="data">
                         <div class="flex items-center gap-2">
                             <img *ngIf="value.profileId" [src]="'/assets/images/profile/profile-' + value.profileId + '.jpeg'" class="h-9 w-9 max-w-none rounded-full" alt="user-profile" />
-                            <div class="font-semibold">{{ value.firstName + ' ' + value.lastName }}</div>
+                            <div class="font-medium">{{ value.firstName + ' ' + value.lastName }}</div>
                         </div>
                     </ng-template>
                     <ng-template slot="country" let-value="data">

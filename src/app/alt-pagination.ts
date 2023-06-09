@@ -13,7 +13,7 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div class="alt-pagination">
-                <ng-datatable [rows]="rows" [columns]="cols1" firstArrow="First" lastArrow="Last" previousArrow="Prev" nextArrow="Next" [showNumbersCount]="3"> </ng-datatable>
+                <ng-datatable [rows]="rows" [columns]="cols1" [loading]="loading1" firstArrow="First" lastArrow="Last" previousArrow="Prev" nextArrow="Next" [showNumbersCount]="3"> </ng-datatable>
             </div>
 
             <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
@@ -25,7 +25,7 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div>
-                <ng-datatable [rows]="rows" [columns]="cols2" [showFirstPage]="false" [showLastPage]="false"> </ng-datatable>
+                <ng-datatable [rows]="rows" [columns]="cols2" [loading]="loading2" [showFirstPage]="false" [showLastPage]="false"> </ng-datatable>
             </div>
 
             <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
@@ -37,7 +37,7 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div>
-                <ng-datatable [rows]="rows" [columns]="cols3" [showNumbers]="false"> </ng-datatable>
+                <ng-datatable [rows]="rows" [columns]="cols3" [loading]="loading3" [showNumbers]="false"> </ng-datatable>
             </div>
 
             <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
@@ -55,6 +55,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                     [showNumbers]="false"
                     [showFirstPage]="false"
                     [showLastPage]="false"
+                    [loading]="loading4"
                     previousArrow="Previous"
                     nextArrow="Next"
                     paginationInfo="{0} to {1} of {2}"
@@ -91,10 +92,18 @@ export class AltPaginationComponent {
     cols2: Array<colDef> = [];
     cols3: Array<colDef> = [];
     cols4: Array<colDef> = [];
+    loading1 = false;
+    loading2 = false;
+    loading3 = false;
+    loading4 = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading1 = true;
+        this.loading2 = true;
+        this.loading3 = true;
+        this.loading4 = true;
         this.cols1 = [
             { field: 'id', title: 'ID' },
             { field: 'firstName', title: 'First Name' },
@@ -129,5 +138,10 @@ export class AltPaginationComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+
+        this.loading1 = false;
+        this.loading2 = false;
+        this.loading3 = false;
+        this.loading4 = false;
     }
 }

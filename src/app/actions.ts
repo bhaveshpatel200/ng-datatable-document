@@ -12,14 +12,14 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols">
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading">
                 <ng-template slot="id" let-value="data">
                     <strong>#{{ value.id }}</strong>
                 </ng-template>
                 <ng-template slot="actions" let-value="data">
                     <div class="flex gap-4">
-                        <button type="button" class="btn btn-success" (click)="viewUser(value)">View</button>
-                        <button type="button" class="btn btn-danger" (click)="deleteUser(value)">Delete</button>
+                        <button type="button" class="btn btn-success py-1" (click)="viewUser(value)">View</button>
+                        <button type="button" class="btn btn-danger py-1" (click)="deleteUser(value)">Delete</button>
                     </div>
                 </ng-template>
             </ng-datatable>
@@ -29,10 +29,12 @@ import { colDef } from '@bhplugin/ng-datatable';
 export class ActionsComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -47,6 +49,8 @@ export class ActionsComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+
+        this.loading = false;
     }
 
     viewUser(user: any) {

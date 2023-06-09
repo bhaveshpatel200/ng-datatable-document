@@ -40,6 +40,7 @@ import { AdvancedComponent } from './advanced';
 
 // highlight js
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { SkeletonLoaderComponent } from './skeleton-loader';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -59,6 +60,7 @@ export const routes: Routes = [
     { path: 'columnchooser', component: ColumnChooserComponent },
     { path: 'sorting', component: SortingComponent },
     { path: 'advanced', component: AdvancedComponent },
+    { path: 'skeleton-loader', component: SkeletonLoaderComponent },
 ];
 
 @NgModule({
@@ -86,6 +88,7 @@ export const routes: Routes = [
         IconCodeComponent,
         SortingComponent,
         AdvancedComponent,
+        SkeletonLoaderComponent
     ],
     imports: [
         RouterModule.forRoot(routes),

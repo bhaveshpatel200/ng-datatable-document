@@ -13,7 +13,7 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div class="column-filter">
-                <ng-datatable [rows]="rows" [columns]="cols" [columnFilter]="true"> </ng-datatable>
+                <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [columnFilter]="true"> </ng-datatable>
             </div>
         </div>
     `,
@@ -29,10 +29,12 @@ import { colDef } from '@bhplugin/ng-datatable';
 export class ColumnFilterComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true, filter: false },
             { field: 'firstName', title: 'First Name' },
@@ -48,5 +50,6 @@ export class ColumnFilterComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
 }

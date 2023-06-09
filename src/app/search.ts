@@ -16,7 +16,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <input [(ngModel)]="search" type="text" class="form-input max-w-xs" placeholder="Search..." />
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [search]="search"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [search]="search"> </ng-datatable>
 
             <!-- specific column search -->
             <div class="flex items-center justify-between mb-5 border-t border-gray mt-10 pt-10">
@@ -31,7 +31,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 <input [(ngModel)]="search1" type="text" class="form-input max-w-xs" placeholder="Search Firsname and Lastname..." />
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols1" [search]="search1"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols1" [loading]="loading1" [search]="search1"> </ng-datatable>
         </div>
     `,
 })
@@ -41,10 +41,14 @@ export class SearchComponent {
     rows: Array<any> = [];
     search = '';
     search1 = '';
+    loading = false;
+    loading1 = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
+        this.loading1 = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -64,5 +68,7 @@ export class SearchComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
+        this.loading1 = false;
     }
 }

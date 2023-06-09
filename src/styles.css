@@ -55,22 +55,22 @@
         @apply rounded-md px-4 py-1 text-xs;
     }
     .badge.primary {
-        @apply bg-primary/50;
+        @apply bg-primary/30;
     }
     .badge.secondary {
-        @apply bg-gray/50;
+        @apply bg-gray/30;
     }
     .badge.success {
-        @apply bg-success/50;
+        @apply bg-success/30;
     }
     .badge.danger {
-        @apply bg-danger/50;
+        @apply bg-danger/30;
     }
     .badge.warning {
-        @apply bg-warning/50;
+        @apply bg-warning/30;
     }
     .badge.info {
-        @apply bg-info/50;
+        @apply bg-info/30;
     }
 
     /* props tables */

@@ -25,6 +25,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 [rows]="rows"
                 [columns]="cols"
                 [search]="search"
+                [loading]="loading"
                 noDataContent="Записи в базе данных не найдены."
                 paginationInfo="Отображение от {0} до {1} записей из {2} записей"
             ></ng-datatable>
@@ -35,10 +36,12 @@ export class CustomMessageComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
     search = '';
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -52,5 +55,6 @@ export class CustomMessageComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
 }

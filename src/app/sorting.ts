@@ -12,17 +12,19 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [sortable]="true"> </ng-datatable>
         </div>
     `,
 })
 export class SortingComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -36,5 +38,6 @@ export class SortingComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
 }

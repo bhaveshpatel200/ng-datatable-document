@@ -40,7 +40,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </ul>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [sortable]="true"> </ng-datatable>
         </div>
     `,
 })
@@ -48,10 +48,12 @@ export class ColumnChooserComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
     isOpen: boolean = false;
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true, hide: false },
             { field: 'firstName', title: 'First Name', hide: false },
@@ -70,6 +72,7 @@ export class ColumnChooserComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
 
     updateColumn(col: colDef) {

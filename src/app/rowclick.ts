@@ -12,17 +12,19 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" rowClass="cursor-pointer" (rowClick)="rowClick($event)"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" rowClass="cursor-pointer" (rowClick)="rowClick($event)"> </ng-datatable>
         </div>
     `,
 })
 export class RowClickComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -36,6 +38,7 @@ export class RowClickComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
     rowClick(user: any) {
         alert('User Details \n' + user.id + ', ' + user.firstName + ', ' + user.lastName + ', ' + user.email);

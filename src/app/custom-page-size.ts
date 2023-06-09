@@ -12,17 +12,19 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [pageSize]="15" [pageSizeOptions]="[10, 15, 30, 50]" paginationInfo="{0} to {1} of {2}"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [pageSize]="15" [pageSizeOptions]="[10, 15, 30, 50]" paginationInfo="{0} to {1} of {2}"> </ng-datatable>
         </div>
     `,
 })
 export class CustomPageSizeComponent {
     cols: Array<colDef> = [];
     rows: Array<any> = [];
+    loading = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -36,5 +38,6 @@ export class CustomPageSizeComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading = false;
     }
 }

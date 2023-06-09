@@ -12,7 +12,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true" [pageSize]="20" [hasCheckbox]="true" [stickyHeader]="true">
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading1" [sortable]="true" [pageSize]="20" [hasCheckbox]="true" [stickyHeader]="true">
                 <ng-template slot="id" let-value="data">
                     <strong>#{{ value.id }}</strong>
                 </ng-template>
@@ -26,7 +26,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols1" [sortable]="true" [hasCheckbox]="true" [stickyFirstColumn]="true">
+            <ng-datatable [rows]="rows" [columns]="cols1" [loading]="loading2" [sortable]="true" [hasCheckbox]="true" [stickyFirstColumn]="true">
                 <ng-template slot="id" let-value="data">
                     <strong>#{{ value.id }}</strong>
                 </ng-template>
@@ -43,7 +43,17 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols2" [sortable]="true" [pageSize]="20" [hasCheckbox]="true" [stickyHeader]="true" [stickyFirstColumn]="true"> </ng-datatable>
+            <ng-datatable
+                [rows]="rows"
+                [columns]="cols2"
+                [loading]="loading3"
+                [sortable]="true"
+                [pageSize]="20"
+                [hasCheckbox]="true"
+                [stickyHeader]="true"
+                [stickyFirstColumn]="true"
+            >
+            </ng-datatable>
         </div>
     `,
 })
@@ -52,10 +62,16 @@ export class StickyHeaderComponent {
     cols1: Array<colDef> = [];
     cols2: Array<colDef> = [];
     rows: Array<any> = [];
+    loading1 = false;
+    loading2 = false;
+    loading3 = false;
     constructor() {
         this.initData();
     }
     async initData() {
+        this.loading1 = true;
+        this.loading2 = true;
+        this.loading3 = true;
         this.cols = [
             { field: 'id', title: 'ID', isUnique: true },
             { field: 'firstName', title: 'First Name' },
@@ -93,5 +109,8 @@ export class StickyHeaderComponent {
             const response = await fetch(url);
             this.rows = await response.json();
         } catch (error) {}
+        this.loading1 = false;
+        this.loading2 = false;
+        this.loading3 = false;
     }
 }

@@ -5,7 +5,7 @@ import { colDef } from '@bhplugin/ng-datatable';
     template: `
         <div>
             <div class="flex items-center justify-between mb-5">
-                <h2 class="text-3xl">Basic</h2>
+                <h2 class="text-3xl">Advanced</h2>
                 <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/advanced.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
                     View Source
@@ -13,7 +13,18 @@ import { colDef } from '@bhplugin/ng-datatable';
             </div>
 
             <div class="advanced-table whitespace-nowrap">
-                <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true" [loading]="loading">
+                <ng-datatable
+                    [rows]="rows"
+                    [columns]="cols"
+                    [loading]="loading"
+                    [totalRows]="total_rows"
+                    [isServerMode]="true"
+                    [pageSize]="params.pagesize"
+                    [sortable]="true"
+                    [sortColumn]="params.sort_column"
+                    [sortDirection]="params.sort_direction"
+                    (changeServer)="changeServer($event)"
+                >
                     <ng-template slot="id" let-value="data">
                         <strong class="text-info">#{{ value.id }}</strong>
                     </ng-template>
@@ -95,50 +106,102 @@ import { colDef } from '@bhplugin/ng-datatable';
     encapsulation: ViewEncapsulation.None,
 })
 export class AdvancedComponent {
-    cols: Array<colDef> = [];
+    loading: boolean = true;
+    cols: Array<colDef> = [
+        { field: 'id', title: 'ID', isUnique: true },
+        { field: 'firstName', title: 'User' },
+        { field: 'country', title: 'Country', sort: false },
+        { field: 'email', title: 'Email' },
+        { field: 'age', title: 'Progress', sort: false },
+        { field: 'phone', title: 'Phone' },
+        { field: 'rating', title: 'Rate', sort: false, minWidth: '120px', headerClass: 'justify-center', cellClass: 'justify-center' },
+        { field: 'series', title: 'Progress', sort: false },
+        { field: 'status', title: 'Status', sort: false },
+    ];
     rows: Array<any> = [];
+    total_rows: number = 0;
+    params = {
+        current_page: 1,
+        pagesize: 10,
+        sort_column: 'id',
+        sort_direction: 'asc',
+        column_filters: [],
+    };
     countryList: Array<any> = [];
-    loading = false;
+
+    controller: any;
+    timer: any;
     constructor() {
         this.initData();
     }
-    async initData() {
-        this.loading = true;
-        this.cols = [
-            { field: 'id', title: 'ID', isUnique: true },
-            { field: 'firstName', title: 'User' },
-            { field: 'country', title: 'Country', sort: false },
-            { field: 'email', title: 'Email' },
-            { field: 'age', title: 'Progress', sort: false },
-            { field: 'phone', title: 'Phone' },
-            { field: 'rating', title: 'Rate', sort: false, minWidth: '120px', headerClass: 'justify-center', cellClass: 'justify-center' },
-            { field: 'series', title: 'Progress', sort: false },
-            { field: 'status', title: 'Status', sort: false },
-        ];
+
+    filterUsers() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            this.getUsers();
+        }, 300);
+    }
+
+    async getUsers() {
+        // cancel request if previous request still pending before next request fire
+        if (this.controller) {
+            this.controller.abort();
+        }
+        this.controller = new AbortController();
+        const signal = this.controller.signal;
 
         try {
-            const url = '../assets/data.json';
-            const response = await fetch(url);
-            this.rows = await response.json();
+            this.loading = true;
+
+            const response = await fetch('https://vue3-datatable-document.vercel.app/api/user', {
+                method: 'POST',
+                body: JSON.stringify(this.params),
+                signal: signal, // Assign the signal to the fetch request
+            });
+
+            const data = await response.json();
+
+            this.rows = data?.data;
+            this.rows = this.rows.map((row) => {
+                return {
+                    ...row,
+                    profileId: this.getRandomNumber(1, 32),
+                    age: this.getRandomNumber(15, 100),
+                    status: this.randomStatus(),
+                    color: this.randomColor(),
+                    statusColor: this.randomStatusColor(),
+                    rating: this.getRandomNumber(1, 5),
+                    country: this.getCountry().name,
+                    countryCode: this.getCountry().code,
+                };
+            });
+            this.total_rows = data?.meta?.total;
+        } catch {}
+
+        this.loading = false;
+    }
+
+    async initData() {
+        try {
+            this.getUsers();
+
             const data = await fetch('../assets/country.json');
             this.countryList = await data.json();
         } catch (error) {}
+    }
 
-        this.rows = this.rows.map((row) => {
-            return {
-                ...row,
-                profileId: this.getRandomNumber(1, 32),
-                age: this.getRandomNumber(15, 100),
-                status: this.randomStatus(),
-                color: this.randomColor(),
-                statusColor: this.randomStatusColor(),
-                rating: this.getRandomNumber(1, 5),
-                country: this.getCountry().name,
-                countryCode: this.getCountry().code,
-            };
-        });
+    changeServer(data: any) {
+        this.params.current_page = data.current_page;
+        this.params.pagesize = data.pagesize;
+        this.params.sort_column = data.sort_column;
+        this.params.sort_direction = data.sort_direction;
+        this.params.column_filters = data.column_filters;
 
-        this.loading = false;
+        if (data.change_type === 'filter') {
+            this.filterUsers();
+        } else {
+            this.getUsers();
+        }
     }
 
     chartOptions: any;

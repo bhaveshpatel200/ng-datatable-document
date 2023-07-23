@@ -1,33 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { colDef } from '@bhplugin/ng-datatable';
 
 @Component({
     template: `
         <div>
             <div class="flex items-center justify-between mb-5">
-                <h2 class="text-3xl">Custom Pagesize & Info</h2>
-                <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/custom-page-size.ts" class="btn">
+                <h2 class="text-3xl">Static Mode</h2>
+                <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable-document/blob/main/src/app/static-mode.ts" class="btn">
                     <icon-github class="w-5 h-5 mr-2" />
                     View Source
                 </a>
             </div>
 
-            <ng-datatable
-                [rows]="rows"
-                [columns]="cols"
-                [loading]="loading"
-                [totalRows]="total_rows"
-                [isServerMode]="true"
-                [pageSize]="params.pagesize"
-                [pageSizeOptions]="[10, 15, 30, 50]"
-                paginationInfo="{0} to {1} of {2}"
-                (changeServer)="changeServer($event)"
-            >
-            </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [sortable]="true" [columnFilter]="true"> </ng-datatable>
         </div>
     `,
+    styles: [
+        `
+            .bh-datatable .bh-table-responsive {
+                @apply min-h-[300px];
+            }
+        `,
+    ],
+    encapsulation: ViewEncapsulation.None,
 })
-export class CustomPageSizeComponent {
+export class StaticModeComponent {
     loading: boolean = true;
     cols: Array<colDef> = [
         { field: 'id', title: 'ID', isUnique: true },
@@ -40,36 +37,25 @@ export class CustomPageSizeComponent {
         { field: 'isActive', title: 'Active', type: 'bool' },
     ];
     rows: Array<any> = [];
-    total_rows: number = 0;
-    params = {
-        current_page: 1,
-        pagesize: 15,
-    };
+
     constructor() {
         this.getUsers();
     }
+
     async getUsers() {
         try {
             this.loading = true;
 
             const response = await fetch('https://vue3-datatable-document.vercel.app/api/user', {
                 method: 'POST',
-                body: JSON.stringify(this.params),
+                body: JSON.stringify({ pagesize: 500 }),
             });
 
             const data = await response.json();
 
             this.rows = data?.data;
-            this.total_rows = data?.meta?.total;
         } catch {}
 
         this.loading = false;
-    }
-
-    changeServer(data: any) {
-        this.params.current_page = data.current_page;
-        this.params.pagesize = data.pagesize;
-
-        this.getUsers();
     }
 }

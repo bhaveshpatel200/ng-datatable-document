@@ -11,15 +11,16 @@
 
     /* sidebar */
     .sidebar .nav-link {
-        @apply w-full mb-1 flex items-center whitespace-nowrap rounded-md px-2.5 py-2 hover:bg-black/[0.08] hover:text-primary transition duration-300;
+        @apply w-full flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1.5 hover:text-primary hover:font-semibold transition duration-300;
     }
 
+    .sidebar .nav-link:hover,
     .sidebar .nav-link.active {
-        @apply bg-black/[0.08] text-primary;
+        @apply text-primary font-semibold;
     }
 
     .sidebar .sub-item > a {
-        @apply w-full mb-1 flex items-center whitespace-nowrap rounded-md px-2.5 py-2 hover:bg-black/[0.08] hover:text-primary transition duration-300;
+        @apply w-full flex items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-1 hover:text-primary hover:font-semibold transition duration-300;
     }
 
     /* Form */
@@ -55,22 +56,22 @@
         @apply rounded-md px-4 py-1 text-xs;
     }
     .badge.primary {
-        @apply bg-primary/30;
+        @apply bg-primary-light;
     }
     .badge.secondary {
-        @apply bg-gray/30;
+        @apply bg-secondary-light;
     }
     .badge.success {
-        @apply bg-success/30;
+        @apply bg-success-light;
     }
     .badge.danger {
-        @apply bg-danger/30;
+        @apply bg-danger-light;
     }
     .badge.warning {
-        @apply bg-warning/30;
+        @apply bg-warning-light;
     }
     .badge.info {
-        @apply bg-info/30;
+        @apply bg-info-light;
     }
 
     /* props tables */
@@ -97,14 +98,6 @@
     .props-table table.bh-table-striped tr {
         @apply even:bg-[#f4f4f4];
     }
-}
-/* datatable */
-.bh-datatable {
-    @apply !font-light;
-}
-.bh-table-responsive table tfoot tr th,
-.bh-table-responsive table thead tr th {
-    @apply !font-medium;
 }
 
 /* highlightjs */

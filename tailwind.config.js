@@ -3,21 +3,41 @@ module.exports = {
     content: ['./src/**/*.{html,ts}', 'index.html', 'styles.css'],
     theme: {
         fontFamily: {
-            lexend: ['Lexend', 'sans-serif', 'ui-sans-serif'],
+            poppins: ['Poppins', 'sans-serif'],
         },
-        colors: {
-            transparent: 'transparent',
-            current: 'currentColor',
-            black: '#0e1726',
-            gray: '#f3f4f6',
-            white: '#fff',
-            primary: '#5367ff',
-            success: '#32C28D',
-            danger: '#E84861',
-            warning: '#F4A03D',
-            info: '#00A2E9',
+        extend: {
+            colors: {
+                bgdark: '#1c232f',
+                gray: {
+                    DEFAULT: '#f4f4f4',
+                    light: '#f8f8f8',
+                },
+                primary: {
+                    DEFAULT: '#5367ff',
+                    light: '#eef0ff',
+                },
+                secondary: {
+                    DEFAULT: '#0dcaf0',
+                    light: '#e7fafe',
+                },
+                success: {
+                    DEFAULT: '#00d09c',
+                    light: '#e6fbf6',
+                },
+                danger: {
+                    DEFAULT: '#ff585d',
+                    light: '#ffeeef',
+                },
+                warning: {
+                    DEFAULT: '#ffb61b',
+                    light: '#fff3cd',
+                },
+                info: {
+                    DEFAULT: '#1da1f2',
+                    light: '#e8f6fe',
+                },
+            },
         },
-        extend: {},
     },
     plugins: [],
 };

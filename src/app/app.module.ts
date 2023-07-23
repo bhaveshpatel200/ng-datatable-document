@@ -20,6 +20,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { BasicComponent } from './basic';
 import { IndexComponent } from './index';
+import { StaticModeComponent } from './static-mode';
 import { AltPaginationComponent } from './alt-pagination';
 import { CustomPageSizeComponent } from './custom-page-size';
 import { SearchComponent } from './search';
@@ -33,17 +34,18 @@ import { RowClickComponent } from './rowclick';
 import { StickyHeaderComponent } from './sticky-header';
 import { HeaderCloneComponent } from './header-clone';
 import { ColumnChooserComponent } from './columnchooser';
-import { IconGithubComponent } from './components/icon/icon-github';
-import { IconCodeComponent } from './components/icon/icon-code';
 import { SortingComponent } from './sorting';
 import { AdvancedComponent } from './advanced';
+import { SkeletonLoaderComponent } from './skeleton-loader';
+
+import { IconModule } from './icon/icon.module';
 
 // highlight js
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { SkeletonLoaderComponent } from './skeleton-loader';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
+    { path: 'static-mode', component: StaticModeComponent },
     { path: 'basic', component: BasicComponent },
     { path: 'alt-pagination', component: AltPaginationComponent },
     { path: 'custom-page-size', component: CustomPageSizeComponent },
@@ -70,6 +72,7 @@ export const routes: Routes = [
         FooterComponent,
         SidebarComponent,
         IndexComponent,
+        StaticModeComponent,
         BasicComponent,
         AltPaginationComponent,
         CustomPageSizeComponent,
@@ -84,11 +87,9 @@ export const routes: Routes = [
         StickyHeaderComponent,
         HeaderCloneComponent,
         ColumnChooserComponent,
-        IconGithubComponent,
-        IconCodeComponent,
         SortingComponent,
         AdvancedComponent,
-        SkeletonLoaderComponent
+        SkeletonLoaderComponent,
     ],
     imports: [
         RouterModule.forRoot(routes),
@@ -99,6 +100,7 @@ export const routes: Routes = [
         StoreModule.forRoot({ index: indexReducer }),
         HighlightModule,
         NgApexchartsModule,
+        IconModule,
     ],
     providers: [
         {

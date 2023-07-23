@@ -12,7 +12,7 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </a>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading">
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [totalRows]="total_rows" [isServerMode]="true" (changeServer)="changeServer($event)">
                 <ng-template slot="id" let-value="data">
                     <strong>#{{ value.id }}</strong>
                 </ng-template>
@@ -27,30 +27,50 @@ import { colDef } from '@bhplugin/ng-datatable';
     `,
 })
 export class ActionsComponent {
-    cols: Array<colDef> = [];
+    loading: boolean = true;
+    cols: Array<colDef> = [
+        { field: 'id', title: 'ID', isUnique: true },
+        { field: 'firstName', title: 'First Name' },
+        { field: 'lastName', title: 'Last Name' },
+        { field: 'email', title: 'Email' },
+        { field: 'age', title: 'Age', type: 'number' },
+        { field: 'dob', title: 'Birthdate', type: 'date' },
+        { field: 'address.city', title: 'City' },
+        { field: 'isActive', title: 'Active', type: 'bool' },
+        { field: 'actions', title: 'Actions' },
+    ];
     rows: Array<any> = [];
-    loading = false;
+    total_rows: number = 0;
+    params = {
+        current_page: 1,
+        pagesize: 10,
+    };
     constructor() {
-        this.initData();
+        this.getUsers();
     }
-    async initData() {
-        this.loading = true;
-        this.cols = [
-            { field: 'id', title: 'ID', isUnique: true },
-            { field: 'firstName', title: 'First Name' },
-            { field: 'lastName', title: 'Last Name' },
-            { field: 'email', title: 'Email' },
-            { field: 'phone', title: 'Phone' },
-            { field: 'actions', title: 'Actions' },
-        ];
-
+    async getUsers() {
         try {
-            const url = '../assets/data.json';
-            const response = await fetch(url);
-            this.rows = await response.json();
-        } catch (error) {}
+            this.loading = true;
+
+            const response = await fetch('https://vue3-datatable-document.vercel.app/api/user', {
+                method: 'POST',
+                body: JSON.stringify(this.params),
+            });
+
+            const data = await response.json();
+
+            this.rows = data?.data;
+            this.total_rows = data?.meta?.total;
+        } catch {}
 
         this.loading = false;
+    }
+
+    changeServer(data: any) {
+        this.params.current_page = data.current_page;
+        this.params.pagesize = data.pagesize;
+
+        this.getUsers();
     }
 
     viewUser(user: any) {

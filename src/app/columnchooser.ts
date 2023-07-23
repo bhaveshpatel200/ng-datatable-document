@@ -40,39 +40,64 @@ import { colDef } from '@bhplugin/ng-datatable';
                 </ul>
             </div>
 
-            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [sortable]="true"> </ng-datatable>
+            <ng-datatable [rows]="rows" [columns]="cols" [loading]="loading" [totalRows]="total_rows" [isServerMode]="true" [sortable]="true" (changeServer)="changeServer($event)">
+            </ng-datatable>
         </div>
     `,
 })
 export class ColumnChooserComponent {
-    cols: Array<colDef> = [];
-    rows: Array<any> = [];
     isOpen: boolean = false;
-    loading = false;
+    loading: boolean = true;
+    cols: Array<colDef> = [
+        { field: 'id', title: 'ID', isUnique: true, hide: false },
+        { field: 'firstName', title: 'First Name', hide: false },
+        { field: 'lastName', title: 'Last Name', hide: false },
+        { field: 'email', title: 'Email', hide: false },
+        { field: 'phone', title: 'Phone', hide: false },
+        { field: 'company', title: 'Company', hide: false },
+        { field: 'address.city', title: 'City', hide: false },
+        { field: 'age', title: 'Age', type: 'number', hide: true },
+        { field: 'dob', title: 'Birthdate', type: 'date', hide: true },
+        { field: 'isActive', title: 'Active', type: 'bool', hide: true },
+    ];
+    rows: Array<any> = [];
+    total_rows: number = 0;
+    params = {
+        current_page: 1,
+        pagesize: 10,
+        sort_column: 'id',
+        sort_direction: 'asc',
+        column_filters: [],
+    };
     constructor() {
-        this.initData();
+        this.getUsers();
     }
-    async initData() {
-        this.loading = true;
-        this.cols = [
-            { field: 'id', title: 'ID', isUnique: true, hide: false },
-            { field: 'firstName', title: 'First Name', hide: false },
-            { field: 'lastName', title: 'Last Name', hide: false },
-            { field: 'email', title: 'Email', hide: false },
-            { field: 'phone', title: 'Phone', hide: false },
-            { field: 'company', title: 'Company', hide: false },
-            { field: 'address.street', title: 'Address', hide: false },
-            { field: 'age', title: 'Age', type: 'number', hide: true },
-            { field: 'dob', title: 'Birthdate', type: 'date', hide: true },
-            { field: 'isActive', title: 'Active', type: 'bool', hide: true },
-        ];
-
+    async getUsers() {
         try {
-            const url = '../assets/data.json';
-            const response = await fetch(url);
-            this.rows = await response.json();
-        } catch (error) {}
+            this.loading = true;
+
+            const response = await fetch('https://vue3-datatable-document.vercel.app/api/user', {
+                method: 'POST',
+                body: JSON.stringify(this.params),
+            });
+
+            const data = await response.json();
+
+            this.rows = data?.data;
+            this.total_rows = data?.meta?.total;
+        } catch {}
+
         this.loading = false;
+    }
+
+    changeServer(data: any) {
+        this.params.current_page = data.current_page;
+        this.params.pagesize = data.pagesize;
+        this.params.sort_column = data.sort_column;
+        this.params.sort_direction = data.sort_direction;
+        this.params.column_filters = data.column_filters;
+
+        this.getUsers();
     }
 
     updateColumn(col: colDef) {

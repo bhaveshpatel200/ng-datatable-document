@@ -23,6 +23,7 @@ import { IconGridSortComponent } from './icon-grid-sort';
 import { IconGridStaticComponent } from './icon-grid-static';
 import { IconGridStickyComponent } from './icon-grid-sticky';
 import { IconGridComponent } from './icon-grid';
+import { IconGridMethodComponent } from './icon-grid-method';
 
 @NgModule({
     imports: [CommonModule],
@@ -49,6 +50,7 @@ import { IconGridComponent } from './icon-grid';
         IconGridStaticComponent,
         IconGridStickyComponent,
         IconGridComponent,
+        IconGridMethodComponent,
     ],
     exports: [
         IconAnnouncementComponent,
@@ -73,6 +75,7 @@ import { IconGridComponent } from './icon-grid';
         IconGridStaticComponent,
         IconGridStickyComponent,
         IconGridComponent,
+        IconGridMethodComponent,
     ],
 })
 export class IconModule {}

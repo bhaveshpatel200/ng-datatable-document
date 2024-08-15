@@ -38,6 +38,7 @@ import { SortingComponent } from './sorting';
 import { AdvancedComponent } from './advanced';
 import { SkeletonLoaderComponent } from './skeleton-loader';
 import { MethodsComponent } from './methods';
+import { ExportComponent } from 'src/app/export';
 
 import { IconModule } from './icon/icon.module';
 
@@ -65,6 +66,7 @@ export const routes: Routes = [
     { path: 'advanced', component: AdvancedComponent },
     { path: 'skeleton-loader', component: SkeletonLoaderComponent },
     { path: 'methods', component: MethodsComponent },
+    { path: 'export', component: ExportComponent },
 ];
 
 @NgModule({
@@ -93,6 +95,7 @@ export const routes: Routes = [
         AdvancedComponent,
         SkeletonLoaderComponent,
         MethodsComponent,
+        ExportComponent,
     ],
     imports: [
         RouterModule.forRoot(routes),

@@ -24,6 +24,10 @@ import { IconGridStaticComponent } from './icon-grid-static';
 import { IconGridStickyComponent } from './icon-grid-sticky';
 import { IconGridComponent } from './icon-grid';
 import { IconGridMethodComponent } from './icon-grid-method';
+import { IconFileComponent } from 'src/app/icon/icon-file';
+import { IconFileTextComponent } from 'src/app/icon/icon-file-text';
+import { IconPrinterComponent } from 'src/app/icon/icon-printer';
+import { IconGridExportComponent } from 'src/app/icon/icon-grid-export';
 
 @NgModule({
     imports: [CommonModule],
@@ -51,6 +55,10 @@ import { IconGridMethodComponent } from './icon-grid-method';
         IconGridStickyComponent,
         IconGridComponent,
         IconGridMethodComponent,
+        IconFileComponent,
+        IconFileTextComponent,
+        IconPrinterComponent,
+        IconGridExportComponent,
     ],
     exports: [
         IconAnnouncementComponent,
@@ -76,6 +84,10 @@ import { IconGridMethodComponent } from './icon-grid-method';
         IconGridStickyComponent,
         IconGridComponent,
         IconGridMethodComponent,
+        IconFileComponent,
+        IconFileTextComponent,
+        IconPrinterComponent,
+        IconGridExportComponent,
     ],
 })
 export class IconModule {}

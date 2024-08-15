@@ -3,11 +3,22 @@ import { Component } from '@angular/core';
 @Component({
     template: `
         <div class="space-y-8">
+            <div class="p-3 bg-warning-light text-black rounded-lg flex items-center flex-wrap">
+                <span class="mr-2"><icon-announcement></icon-announcement></span>
+                <div>
+                    "Love using
+                    <a target="_blank" href="https://github.com/bhaveshpatel200/ng-datatable" class="text-primary underline hover:no-underline font-semibold">
+                        @bhplugin/ng-datatable
+                    </a>
+                    ? Don't forget to <strong>Star it on GitHub</strong> and help others discover it!"
+                </div>
+            </div>
+
             <div class="p-3 bg-success-light text-success rounded-lg flex items-center flex-wrap">
                 <span class="mr-2"><icon-announcement></icon-announcement></span>
                 <div>
-                    The <span class="font-semibold">@bhplugin/ng-datatable</span> now offers support for <span class="font-semibold">Server Side Rendering</span>. Please check
-                    the <a href="#props" class="underline hover:no-underline"><span class="font-semibold">"isServerMode"</span></a> prop to enable this feature.
+                    The <span class="font-semibold">@bhplugin/ng-datatable</span> now offers support for <span class="font-semibold">Server Side Rendering</span>. Please check the
+                    <a href="#props" class="underline hover:no-underline"><span class="font-semibold">"isServerMode"</span></a> prop to enable this feature.
                 </div>
             </div>
 

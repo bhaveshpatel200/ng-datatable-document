@@ -101,6 +101,15 @@
     .props-table table.bh-table-striped tr {
         @apply even:bg-[#f4f4f4];
     }
+
+    small {
+        @apply text-xs text-primary bg-primary-light px-1 py-0.5;
+    }
+
+    /* datatable */
+    .bh-datatable tr.footer-row {
+        @apply !bg-yellow-100;
+    }
 }
 
 /* highlightjs */

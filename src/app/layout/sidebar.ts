@@ -120,6 +120,9 @@ import { Store } from '@ngrx/store';
                     <li class="menu nav-item">
                         <a routerLink="/export" routerLinkActive="active" class="nav-link"><icon-grid-export />Export</a>
                     </li>
+                    <li class="menu nav-item">
+                        <a routerLink="/footer-row" routerLinkActive="active" class="nav-link"><icon-grid-sticky />Footer Row</a>
+                    </li>
                     <li class="menu nav-item pt-4">Coming Soon (More Samples)</li>
                 </ul>
             </div>

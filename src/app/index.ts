@@ -270,6 +270,18 @@ import { Component } from '@angular/core';
                                     <td>false</td>
                                     <td>custom no data message</td>
                                 </tr>
+                                <tr>
+                                    <td class="font-semibold">showFooterRow</td>
+                                    <td align="left">boolean</td>
+                                    <td>false</td>
+                                    <td>
+                                        custom footer row to display column summaries such as sum, average, or specific values.<br />
+                                        footer row works only with slots. The slot name should be the column name appended with _footer <small>(e.g., #age_footer)</small>.
+                                        <br /><br />
+                                        <strong>Example</strong>: <br />
+                                        <pre><code [highlight]="footer_slot_code"></code></pre>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -546,6 +558,9 @@ import { Component } from '@angular/core';
     `,
 })
 export class IndexComponent {
+    footer_slot_code = `<ng-template slot="age_footer" let-value="data">
+    <strong>{{ 25 }}</strong>
+</ng-template>`;
     slot_code = `<ng-template slot="id" let-value="data">
     <strong>{{ value.id }}</strong>
 </ng-template>
@@ -556,6 +571,11 @@ export class IndexComponent {
 
 <ng-template slot="email" let-value="data">
     <strong>{{ value.email }}</strong>
+</ng-template>
+
+-- footer slot example --
+<ng-template slot="age_footer" let-value="data">
+    <strong>{{ 25 }}</strong>
 </ng-template>`;
 
     usage_code1 = `import { NgModule } from '@angular/core';

@@ -44,6 +44,7 @@ import { IconModule } from './icon/icon.module';
 
 // highlight js
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { FooterRowComponent } from 'src/app/footer-row';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -67,6 +68,7 @@ export const routes: Routes = [
     { path: 'skeleton-loader', component: SkeletonLoaderComponent },
     { path: 'methods', component: MethodsComponent },
     { path: 'export', component: ExportComponent },
+    { path: 'footer-row', component: FooterRowComponent },
 ];
 
 @NgModule({
@@ -96,6 +98,7 @@ export const routes: Routes = [
         SkeletonLoaderComponent,
         MethodsComponent,
         ExportComponent,
+        FooterRowComponent,
     ],
     imports: [
         RouterModule.forRoot(routes),
